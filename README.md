@@ -9,7 +9,7 @@ Architecture(**Client -> Frontend -> Backend**).<br>
 # Installation
 
 - First, you should configure your **Cluster** as a set of **Islands** (at least 1 Island)as your needs,
-for more informations about **Islands** you can check [Moqabase Guide](https://github.com/MOQA-Solutions/moqabase/docs/moqabase_guide.asciidoc).<br>
+for more informations about **Islands** you can check [Moqabase Guide](https://github.com/MOQA-Solutions/moqabase/blob/master/docs/moqabase_guide.asciidoc).<br>
 - Next, you should **edit** `moqabase:partition_to_node/1` to **adapt** your **Cluster**, it is configured
 by default to support just 1 Island(2 Nodes).
   - **Partitions** are `atoms` corresponding to `numbers`
