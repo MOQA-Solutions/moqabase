@@ -114,7 +114,6 @@ handle_call({set_scale_level , {Partition , NewNumberOfFragments}} , _From ,
 	do_scale(self , Partition , NewNumberOfFragments , State);
 
 
-
 handle_call({set_scale_level , _} , _From , State) ->
 	Reply = "scale not authorised",
 	{reply , Reply , State};
@@ -154,7 +153,6 @@ handle_info({From , ping} , State) ->
 
 handle_info(_Info , State) ->
 	{noreply , State}.
-
 
 
 %%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%%
@@ -284,7 +282,6 @@ scale(State =#state{
 	{Reply , NewState}.
 
 
-
 -spec broadcast_scale_to_frontend_nodes(atom() , pos_integer() , list() , atom()) -> ok.
 broadcast_scale_to_frontend_nodes(Partition , NewNumberOfProcs , FrontendNodes , FrontendServer) ->
 	[broadcast_scale_to_frontend_node(Partition , NewNumberOfProcs , FrontendNode , FrontendServer) 
@@ -319,5 +316,4 @@ get_number_of_procs() ->
 	end.
 
 		
-
 

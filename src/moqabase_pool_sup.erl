@@ -140,5 +140,3 @@ get_number_of_active_procs() ->
 	proplists:get_value(active , ProcsCount).
 
 
-
-

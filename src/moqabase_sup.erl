@@ -57,8 +57,4 @@ init([Partition]) ->
 		     ],
 	{ok , {SupFlags , ChildSpecs}}.
 
-
-
-
-
 	

@@ -181,6 +181,4 @@ check_partition(RecordOrOid , Partition) ->
 	end.
 
 
-
-
 	

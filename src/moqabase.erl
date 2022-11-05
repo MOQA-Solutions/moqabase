@@ -108,7 +108,3 @@ get_keys([ #tmp{ tmp_id = Key } | Tail ] , Keys) ->
 	get_keys(Tail ,  [ Key | Keys ]).
 
 
-
-
-
-

@@ -53,7 +53,6 @@ start(_Type , [PartitionNumber]) ->
 	end.
 
 
-
 -spec stop( _ ) -> ok.
 stop(_State) ->
 	ok.
@@ -70,9 +69,5 @@ try_to_init(PartitionNumber) ->
 		_ ->
 			exit('wrong partition number')
 	end.
-
-
-
-
 
 

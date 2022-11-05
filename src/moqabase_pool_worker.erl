@@ -100,7 +100,6 @@ loop_peer_off({call , _From} , _Call , Data) ->
 	{keep_state , Data}.
 
 
-
 %%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%%
 
 
@@ -155,13 +154,11 @@ loop_peer_on({call , _From} , _Call , Data) ->
 	{keep_state , Data}.
 
 
-
 %%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%%
 
 
 terminate(Reason , State , Data) ->
 	{Reason , State , Data}.
-
 
 
 %%==============================================================================================================%%
@@ -285,7 +282,6 @@ after_operation(Operation , loop_peer_off ,
 	{keep_state , Data};
 
 
-
 after_operation(Operation , loop_peer_on , 
 	Data =#data{
 		id = ID,
@@ -395,5 +391,6 @@ flush_messages() ->
 		ok
 	end,
 	ok.
+
 
 
