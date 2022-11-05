@@ -30,7 +30,9 @@ Node with Partition `'1'` to the **N**th Node with Partition `'N'`
 ```
 rebar3 shell --sname somenode@somehost
 ```
-
+When **Moqabase Application** is running, you can use `moqabase_interface.erl` to interact with the Application.<br>
+You can check [here](https://github.com/moqabase/blob/master/docs/moqabase_interface.asciidoc) a full description of
+`moqabase_interface.erl`'s Functions.
 
 
 

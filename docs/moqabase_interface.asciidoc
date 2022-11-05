@@ -33,7 +33,8 @@ as second argument or *Empty List*.
 * *Args*
 ** no arguments.
 * *Use Cases*
-** This function returns the *State* of `moqabase_server`.
+** This function returns the *State* of `moqabase_server`
+** It can be used for *Debugging*.
 ====
 [float]
 = worker_state/1
@@ -45,7 +46,8 @@ as second argument or *Empty List*.
 *** Each *Worker* have an `ID`, you should read the *source code* to understand more.
 * *Use Cases*
 ** This function returns the *State* of `moqabase_pool_worker` corresponding to the *Worker* with the `ID` that was given
-as argument.
+as argument
+** It can be used for *Debugging*.
 ====
 [float]
 = fragments/1
@@ -66,7 +68,6 @@ as argument.
 * *Use Cases*
 ** this function returns the *Number* of *All Active Procs*.
 ====
-
 
 
 
