@@ -160,7 +160,6 @@ loop_peer_on({call , _From} , _Call , Data) ->
 
 
 terminate(Reason , State , Data) ->
-
 	{Reason , State , Data}.
 
 
