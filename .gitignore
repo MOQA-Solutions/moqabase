@@ -7,10 +7,8 @@ _*
 *.swp
 *.swo
 .erlang.cookie
-log
 erl_crash.dump
 .rebar
-logs
 _build
 .idea
 *.iml
