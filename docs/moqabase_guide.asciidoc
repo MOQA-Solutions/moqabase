@@ -1,0 +1,81 @@
+:video1: https://youtube.com/watch?v=LJx6mUEFAqQ/
+:video2: https://youtube.com/watch?v=c12cYAUTXXs/
+:example: https://github.com/MOQA-Solutions/moqa_example
+[float]
+= What is this
+*Moqabase* is an *Erlang Backend Server* based on *Islands* principle, inspired by {video1}[Anton Lavrick Conference]
+I have decided to *try* implementing the *same idea* as described in the video, and the result was a great work
+that can be used in *Any Erlang Project* that supports *Independant Backend Database*. +
+[float]
+= Features
+[float]
+== Scalability
+*Moqabase* is *incredibly scalable*, it was designed to handle *millions* of concurrent requests at a time +
+[.result]
+====
+- *NO* `transactions` at all and *NO* `locks` at any level of abstraction, the integrity and safety of data is guaranteed
+by *Design* +
+- No API Node's Servers, the *Frontend Process* can reach directly a *Worker Process* +
+- *Parallel Replication* of Data on the *Peer Node* +
+- *Full Control* of Pool's *Workers Number*, we can *Scale Up* or *Scale Down* as our needs +
+- *Full Control* on *Mnesia* Tables *Scalability* by *adding* or *removing* Fragments +
+====
+[float]
+== Fault Tolerance
+2 types of Fault-Tolerance can be guranteed by *Moqabase* : + 
+[.result]
+====
+- It can guarantee always a *Prefixed Number of Worker Procs* and *Treat* each crash immediately *without affecting* other procs +
+- It can guarantee the same *QoS* face to Node's *Sudden Down*, by *relying* on the *Peer Node* from the *Same Island* +
+====
+== Integrity of Data
+*Database's Loss of Data* is a kind of *Fantasy* in *Moqabase*. +
+Even without *Any* locks as I said, the Data is guranteed to be safe and *NO* conflicts at any record will happen +
+[float]
+== Replication
+We have always a *Replication* of an *Entire Given Table* on the *Peer Node*, when a Node is *DOWN* for some reasons,
+it will *retrieve* all what it *missed* when it *Wakes Up* again +
+[float]
+= How it works
+To understand exactly how *Database Islands* work, you should watch carrefully {video1}[this video]. +
+I will try to explain briefly for those who don't have time to watch :
+[.result]
+====
+- An *Island* is a *Couple of Nodes* (2 Nodes) +
+- Each Node have 2 Partitions(`mnesia` tables): *Primary Partition* and *Secondary Partition* +
+- A *Primary Partition* for a *Given Node* is the *Secondary Partition* for its *Peer Node* from the *Same Island* +
+- A *Primary Partition* for a *Given Node* is *entirely replicated* on its *Peer Node* from the *Same Island*
+as *Secondary Partition*, and it is *guaranteed* to be *updated constantly* +
+- When *Both* Nodes from a *Given Island* are *UP*, the *Primary Partition* is the *Active Partition* and the 
+*Secondary partition* is a *Stand By Partition*, that means each Node will *serve just its Primary Partition* +
+- When just *One* Node is *UP* and the other is *DOWN* from a *Given Island*, this Node will *serve Both* partitions :
+*Primary Partition* and *Secondary Partition* +
+- When a given Node *Wakes Up* from a *Crash*, it should *retrieve All* what it *missed* when it was *DOWN* +
+====
+That was a brief explanation of Islands Principle, and it can be implemented in many ways, our way is closer
+to the *WHATSAPP*'s one with some differences. +
+The main differences between *Moqabase* and what *Anton Lavrick* has described are :
+[.result]
+====
+* *Avoiding* the `gen_server` API Process because it can be a *Bottleneck* in the face of high concurrence
+between *requests* that came from the *Frontend Side* +
+** *Anton* talked about create *many* API Servers when this last became a *Bottleneck* +
+** I have resolved that in other way by *removing* the API Server so the Database will be reached *directly by the Workers Procs* +
+* All Data in Moqabase are in *Binary Format* for more efficiency
+* Replication to the Peer Node is done manually and in Parallel with the most efficient way +
+** *Rick Reed* has talked in {video2}[this video] about *Replication* problems because it will be done as *Standard
+Erlang* implementation, to resolve this they have *Patched* OTP and more specifically `mnesia_tm` to customize
+*Replication* between Nodes as they want to be +
+** I didn't touch any part of OTP Code, instead I did *Manual Replication* and with the same *Performance* as *operating* on the *Primary Partition* +
+====
+[float]
+= Use Cases
+You can use *Moqabase* Server for any *Distributed Erlang Application* that supports *Backend Database Implementation*,
+all what you should doing is *UPDATING* `moqabase:partition_to_node/1` and `moqabase_partition.hrl` as your needs and enjoy +
+[float]
+= Example
+You can check {example}[here] a very useful example of using Moqabase with just 1 Island for more simplicity +
+ 
+
+
+

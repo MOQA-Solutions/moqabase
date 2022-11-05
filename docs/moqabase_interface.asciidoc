@@ -1,0 +1,73 @@
+[float]
+= scale/2
+[.result]
+====
+* *Args*
+** *Partition* 
+*** The partition(`mnesia` table) in question to be scaled.
+*** *ONLY* the *Primary Partition* is *Authorized* to scale. 
+** *New Number Of Fragments*
+*** This should be the *New Number Of Fragments* of the *Partition* given as first argument
+if the scale is *Done with Success*.
+* *Use Cases*
+** This function is to be used to *SCALE UP* or *SCALE DOWN Both* the *Number of Partition's Fragments* and the *Number of Procs*. +
+====
+[float]
+= read/2
+[.result]
+====
+* *Args*
+** *Partition*
+*** The partition(`mnesia` table) in question to *lookup* for a *value*. 
+** *Key*
+*** The *Key* used to *lookup* for a *value*.  
+* *Use Cases*
+** This function is to be used to *lookup* a *value* from the *Partition*(`mnesia` table)
+that was given as first argument, this *value* can be a *record* corresponding to the *Key* that was given
+as second argument or *Empty List*.
+====
+[float]
+= server_state/0
+[.result]
+====
+* *Args*
+** no arguments.
+* *Use Cases*
+** This function returns the *State* of `moqabase_server`.
+====
+[float]
+= worker_state/1
+[.result]
+====
+* *Args*
+** *ID* 
+*** The `ID` corresponding to a *worker process*.
+*** Each *Worker* have an `ID`, you should read the *source code* to understand more.
+* *Use Cases*
+** This function returns the *State* of `moqabase_pool_worker` corresponding to the *Worker* with the `ID` that was given
+as argument.
+====
+[float]
+= fragments/1
+[.result]
+====
+* *Args*
+** *Partition*
+*** The partition(`mnesia` table) in question to be checked for its *Number of Fragments*.
+* *Use Cases*
+** This function returns the number of fragments of the *Partition* that was given as argument.
+====
+[float]
+= procs/0
+[.result]
+====
+* *Args*
+** no arguments.
+* *Use Cases*
+** this function returns the *Number* of *All Active Procs*.
+====
+
+
+
+
+
